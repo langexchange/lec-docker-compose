@@ -46,7 +46,22 @@ services:
       restart: always
       # ports:
       # - "5000:80"
-    
+    ###############
+    le-user-service:
+      image: thuongnguyen158/le-user-service:latest
+      container_name: user-service
+      environment:
+        ASPNETCORE_ENVIRONMENT: Development
+        CONSUL_URL: http://consul:8500
+        DB_CONNECTION_STRING: ""
+
+      depends_on:
+        - consul
+      networks:
+        - lang-exchange-network
+      restart: always
+      ports:
+      - "5002:80"
 
         
 networks:
