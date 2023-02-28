@@ -13,21 +13,22 @@ services:
         ports:
         - "8500:8500"
     ###############
-    le-api-gateway:
-      image: thuongnguyen158/le-api-gateway:latest
-      container_name: api-gateway
-      environment:
-        ASPNETCORE_ENVIRONMENT: Development
+    # le-api-gateway:
+    #   image: thuongnguyen158/le-api-gateway:latest
+    #   container_name: api-gateway
+    #   environment:
+    #     ASPNETCORE_ENVIRONMENT: Development
 
-      depends_on:
-        - le-file-service
-        - consul
-      networks:
-        - lang-exchange-network
-      restart: always
-      ports:
-      - "7777:80"
+    #   depends_on:
+    #     - le-file-service
+    #     - consul
+    #   networks:
+    #     - lang-exchange-network
+    #   restart: always
+    #   ports:
+    #   - "7777:80"
     ###############
+    # access url to see http://localhost:5000/swagger/index.html
     le-file-service:
       image: thuongnguyen158/le-file-service:latest
       container_name: file-service
@@ -44,9 +45,10 @@ services:
       networks:
         - lang-exchange-network
       restart: always
-      # ports:
-      # - "5000:80"
+      ports:
+      - "5000:80"
     ###############
+    # access url to see http://localhost:5002/swagger/index.html
     le-user-service:
       image: thuongnguyen158/le-user-service:latest
       container_name: user-service
@@ -63,6 +65,18 @@ services:
       ports:
       - "5002:80"
 
+    ###############
+    # access url to see http://localhost:8080
+    le-webapp-service:
+      image: thuongnguyen158/le-web-app:latest
+      container_name: web-app
+      environment:
+        REACT_APP_API_URL_ROOT: http://localhost:7777
+      networks:
+        - lang-exchange-network
+      restart: always
+      ports:
+      - "8080:80"
         
 networks:
     lang-exchange-network:
