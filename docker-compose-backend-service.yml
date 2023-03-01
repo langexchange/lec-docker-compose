@@ -71,7 +71,7 @@ services:
       image: thuongnguyen158/le-web-app:latest
       container_name: web-app
       environment:
-        REACT_APP_API_URL_ROOT: http://localhost:7777
+        REACT_APP_API_URL_ROOT: ""
       networks:
         - lang-exchange-network
       restart: always
