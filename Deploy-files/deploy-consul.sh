@@ -1,0 +1,1 @@
+docker-compose -f docker-compose-consul.yaml up -d --force-recreate

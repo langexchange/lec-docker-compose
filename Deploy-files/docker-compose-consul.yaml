@@ -1,0 +1,20 @@
+version: '3.5'
+
+services:
+    ###############
+    consul:
+        image: consul:${TAG:-latest}
+        command: consul agent -dev -log-level=warn -ui -client=0.0.0.0
+        hostname: consul
+        container_name: le-consul
+        restart: always
+        networks:
+        - lang-exchange
+        ports:
+        - "8500:8500"
+networks:
+  lang-exchange:
+      driver: bridge
+      name: lang-exchange-network
+
+#see here https://www.bartek-jozwowiak.me/blog/Communication-between-multiple-docker-compose-projects

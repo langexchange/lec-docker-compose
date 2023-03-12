@@ -35,8 +35,8 @@ services:
       environment:
         ASPNETCORE_ENVIRONMENT: Development
         S3_BUCKET_NAME: language-exchanged
-        AWS_ACCESS_KEY_ID: empty
-        AWS_SECRET_ACCESS_KEY: empty
+        AWS_ACCESS_KEY_ID: AKIA5RKKGIJLXKDTJLC4
+        AWS_SECRET_ACCESS_KEY: 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
         MINIO_HOST: http://127.0.0.1:9000
         CONSUL_URL: http://consul:8500
 
@@ -65,7 +65,7 @@ services:
       ports:
       - "5002:80"
 
-    ###############
+    ##############
     # access url to see http://localhost:8080
     le-webapp-service:
       image: thuongnguyen158/le-web-app:latest
