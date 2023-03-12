@@ -1,0 +1,26 @@
+Install Nginx:
+https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-20-04
+
+Let's crypt for Nginx:
+https://www.nginx.com/blog/using-free-ssltls-certificates-from-lets-encrypt-with-nginx/
+
+nginx.config:
+
+   include /etc/nginx/conf.d/*.conf;
+#       include /etc/nginx/sites-enabled/*;
+
+        server {
+                listen 80 default_server;
+                server_name _;
+                return 301 https://$host$request_uri;
+        }
+        server{
+                server_name langexchange.ddns.us www.langexchange.ddns.us;
+                listen 443 ssl;
+                # Certificates
+                ssl_certificate /etc/letsencrypt/live/langexchange.ddns.us/fullchain.pem;
+                ssl_certificate_key /etc/letsencrypt/live/langexchange.ddns.us/privkey.pem;
+                location / {
+                        proxy_pass http://localhost:8500;
+                }
+        }
