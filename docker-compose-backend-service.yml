@@ -59,9 +59,9 @@ services:
         SECRET_KEY: c9a56074-ac16-11ed-afa1-0242ac1200023b8f9f24-ac17-11ed-afa1-0242ac12000241c27614-ac17-11ed-afa1-0242ac120002
         NEO4J_DATABASE: neo4j
         #azure neo4j
-        NEO4J_HOST: bolt://20.195.209.186:7687
+        # NEO4J_HOST: bolt://20.195.209.186:7687
         # #aws neo4j
-        # NEO4J_HOST: bolt://18.136.200.247:7687
+        NEO4J_HOST: bolt://18.136.200.247:7687
         #localhost neo4j
         # NEO4J_HOST: bolt://localhost:7687
         NEO4J_USER: neo4j
