@@ -24,6 +24,8 @@ services:
         networks:
             - lang-exchange-network
         restart: always
+        volumes:
+        - "zookeeper_data:/bitnami"
 
     kafka:
         image: bitnami/kafka:latest
@@ -43,6 +45,8 @@ services:
         networks:
             - lang-exchange-network
         restart: always
+        volumes:
+        - "kafka_data:/bitnami"
     kafdrop:
         image: obsidiandynamics/kafdrop
         restart: always
@@ -115,6 +119,7 @@ services:
         
       depends_on:
         - consul
+        - kafka
       networks:
         - lang-exchange-network
       restart: always
@@ -136,6 +141,7 @@ services:
         
       depends_on:
         - consul
+        - kafka
       networks:
         - lang-exchange-network
       restart: always
@@ -177,3 +183,5 @@ networks:
         driver: bridge
 volumes:
   data:
+  zookeeper_data:
+  kafka_data:
