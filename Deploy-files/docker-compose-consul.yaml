@@ -1,4 +1,4 @@
-version: '3.5'
+version: '3.8'
 
 services:
     ###############
@@ -6,10 +6,11 @@ services:
         image: consul:${TAG:-latest}
         command: consul agent -dev -log-level=warn -ui -client=0.0.0.0
         hostname: consul
-        container_name: le-consul
+        container_name: lec-consul
         restart: always
         networks:
-        - lang-exchange
+            - lang-exchange
+        # - lang-exchange-network
         ports:
         - "8500:8500"
 networks:

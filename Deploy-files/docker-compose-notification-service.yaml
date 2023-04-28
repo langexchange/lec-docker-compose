@@ -3,7 +3,7 @@ version: '3.4'
 services:
     le-notification-service:
       image: thuongnguyen158/le-notification-service:latest
-      container_name: notification-service
+      container_name: lec-notification-service
       environment:
         ASPNETCORE_ENVIRONMENT: Development
         SECRET_KEY: c9a56074-ac16-11ed-afa1-0242ac1200023b8f9f24-ac17-11ed-afa1-0242ac12000241c27614-ac17-11ed-afa1-0242ac120002
@@ -13,9 +13,9 @@ services:
         MESSAGE_BUS_HOST: kafka:9092
         HOST_PREFIX: ""
         
-      depends_on:
-        - consul
-        - kafka
+      # depends_on:
+      #   - consul
+      #   - kafka
       networks:
         - lang-exchange-network
       restart: always

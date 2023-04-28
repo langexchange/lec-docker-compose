@@ -3,7 +3,7 @@ version: '3.4'
 services:
     zookeeper-server:
         image: bitnami/zookeeper:latest
-        container_name: zookeeper
+        container_name: lec-zookeeper
         ports:
         - "2181:80"
         environment:
@@ -16,7 +16,7 @@ services:
 
     kafka:
         image: bitnami/kafka:latest
-        container_name: kafka
+        container_name: lec-kafka
         depends_on:
         - zookeeper-server
         ports:
@@ -34,7 +34,7 @@ services:
         restart: always
         volumes:
         - "kafka_data:/bitnami"
-        
+
 networks:
   lang-exchange-network:
     external: true

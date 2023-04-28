@@ -2,7 +2,7 @@ version: "3.2"
 services:
   neo4j:
     image: neo4j:latest
-    container_name: 'dev-neo4j'
+    container_name: lec-neo4j
     volumes:
       - './neo4j/data:/data'
       - './neo4j/logs:/logs'

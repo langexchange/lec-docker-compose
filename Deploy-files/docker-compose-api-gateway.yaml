@@ -1,9 +1,9 @@
 version: '3.4'
 
 services:
-    le-api-gateway:
+    lec-api-gateway:
       image: thuongnguyen158/le-api-gateway:latest
-      container_name: api-gateway
+      container_name: lec-api-gateway
       environment:
         ASPNETCORE_ENVIRONMENT: Development
       networks:
