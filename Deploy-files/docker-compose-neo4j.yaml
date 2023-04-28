@@ -1,0 +1,23 @@
+version: "3.2"
+services:
+  neo4j:
+    image: neo4j:latest
+    container_name: 'dev-neo4j'
+    volumes:
+      - './neo4j/data:/data'
+      - './neo4j/logs:/logs'
+      - './neo4j/import:/var/lib/neo4j/import'
+
+    ports:
+      - 7473:7473
+      - 7474:7474
+      - 7687:7687
+    restart: always
+    networks:
+        - lang-exchange-network
+    environment:
+      NEO4J_AUTH: neo4j/t0ps3cr3tt0ps3cr3t
+
+networks:
+  lang-exchange-network:
+    external: true

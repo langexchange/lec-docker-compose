@@ -1,17 +1,19 @@
 version: '3.4'
 
 services:
-    le-file-service:
+    lec-file-service:
       image: thuongnguyen158/le-file-service:latest
       container_name: file-service
       environment:
         ASPNETCORE_ENVIRONMENT: Development
         S3_BUCKET_NAME: language-exchanged
-        AWS_ACCESS_KEY_ID: AKIA5RKKGIJLXKDTJLC4
-        AWS_SECRET_ACCESS_KEY: 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
+        AWS_ACCESS_KEY_ID: AKIA5RKKGIJL6UQB7W4J
+        AWS_SECRET_ACCESS_KEY: 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
         MINIO_HOST: http://127.0.0.1:9000
         CONSUL_URL: http://consul:8500
 
+      depends_on:
+        - consul
       networks:
         - lang-exchange-network
       restart: always

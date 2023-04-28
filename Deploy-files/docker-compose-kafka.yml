@@ -1,0 +1,43 @@
+version: '3.4'
+
+services:
+    zookeeper-server:
+        image: bitnami/zookeeper:latest
+        container_name: zookeeper
+        ports:
+        - "2181:80"
+        environment:
+        - ALLOW_ANONYMOUS_LOGIN=yes
+        networks:
+            - lang-exchange-network
+        restart: always
+        volumes:
+        - "zookeeper_data:/bitnami"
+
+    kafka:
+        image: bitnami/kafka:latest
+        container_name: kafka
+        depends_on:
+        - zookeeper-server
+        ports:
+        - "9093:9093"
+        - "9092:9092"
+        environment:
+        - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper-server
+        - ALLOW_PLAINTEXT_LISTENER=yes
+        - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+        - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:9093
+        - KAFKA_LISTENERS=PLAINTEXT_HOST://0.0.0.0:9093,PLAINTEXT://0.0.0.0:9092
+        - KAFKA_INTER_BROKER_LISTENER_NAME=PLAINTEXT_HOST
+        networks:
+            - lang-exchange-network
+        restart: always
+        volumes:
+        - "kafka_data:/bitnami"
+        
+networks:
+  lang-exchange-network:
+    external: true
+volumes:
+  zookeeper_data:
+  kafka_data:
