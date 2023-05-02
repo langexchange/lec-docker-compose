@@ -134,7 +134,7 @@ services:
         ASPNETCORE_ENVIRONMENT: Development
         SECRET_KEY: c9a56074-ac16-11ed-afa1-0242ac1200023b8f9f24-ac17-11ed-afa1-0242ac12000241c27614-ac17-11ed-afa1-0242ac120002
         DB_CONNECTION_STRING: Host=database-1.cvisbvujuezh.ap-southeast-1.rds.amazonaws.com;Port=5432;Database=langgeneral;Username=postgres;Password=t0ps3cr3tt0ps3cr3t
-        CRON_JOB_DB_CONNECTION_STRING: "Host=database-1.cvisbvujuezh.ap-southeast-1.rds.amazonaws.com;Port=5432;Database=background_cronjob;Username=postgres;Password=t0ps3cr3tt0ps3cr3t;Pooling=true;Minimum Pool Size=0;Maximum Pool Size=50"
+        CRON_JOB_DB_CONNECTION_STRING: "Host=database-1.cvisbvujuezh.ap-southeast-1.rds.amazonaws.com;Port=5432;Database=background_cronjob;Username=postgres;Password=t0ps3cr3tt0ps3cr3t;Pooling=true;Minimum Pool Size=0;Maximum Pool Size=25"
         CONSUL_URL: http://consul:8500
         MESSAGE_BUS_HOST: kafka:9092
         HOST_PREFIX: ""
@@ -147,6 +147,24 @@ services:
       restart: always
       ports:
       - "5003:80"
+    
+    ##############
+    le-admin-service:
+      image: thuongnguyen158/le-admin-service:latest
+      container_name: admin-service
+      environment:
+        ASPNETCORE_ENVIRONMENT: Development
+        SECRET_KEY: c9a56074-ac16-11ed-afa1-0242ac1200023b8f9f24-ac17-11ed-afa1-0242ac12000241c27614-ac17-11ed-afa1-0242ac120002
+        DB_CONNECTION_STRING: Host=database-1.cvisbvujuezh.ap-southeast-1.rds.amazonaws.com;Port=5432;Database=langgeneral;Username=postgres;Password=t0ps3cr3tt0ps3cr3t
+        CONSUL_URL: http://consul:8500
+        
+      depends_on:
+        - consul
+      networks:
+        - lang-exchange-network
+      restart: always
+      ports:
+      - "5004:80"
     ##############
     # access url to see http://localhost:8080
     # le-webapp-service:
