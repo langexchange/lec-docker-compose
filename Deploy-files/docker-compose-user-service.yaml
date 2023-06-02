@@ -25,6 +25,8 @@ services:
     networks:
       - lang-exchange-network
     restart: always
+    ports:
+      - "5002:80"
       
 networks:
   lang-exchange-network:
