@@ -108,7 +108,7 @@ services:
         #azure neo4j
         # NEO4J_HOST: bolt://20.195.209.186:7687
         # #aws neo4j
-        NEO4J_HOST: bolt://54.255.158.171:7687
+        NEO4J_HOST: bolt://3.1.50.59:7687
         #localhost neo4j
         # NEO4J_HOST: bolt://localhost:7687
         NEO4J_USER: neo4j
